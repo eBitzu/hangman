@@ -4,9 +4,10 @@ import "./Playground.css";
 
 export type PlayGroundProps = {
   onMiss(letter: string): void;
+  onComplete(): void;
   hangmanWord: string;
 };
-export const Playground: React.FunctionComponent<PlayGroundProps> = ({ onMiss, hangmanWord }) => {
+export const Playground: React.FunctionComponent<PlayGroundProps> = ({ onMiss, hangmanWord, onComplete }) => {
   const [foundLetters, setFoundLetters] = useState<Array<string>>(
     hangmanWord.split('').map((el, idx) => idx ? '' : el)
   );
@@ -14,9 +15,9 @@ export const Playground: React.FunctionComponent<PlayGroundProps> = ({ onMiss, h
 
   useEffect(() => {
     if (foundLetters.every((l) => !!l)) {
-      alert("I won");
+      onComplete();
     }
-  }, [foundLetters]);
+  }, [foundLetters, onComplete]);
 
   const handleClick = useCallback(() => {
     const input: HTMLInputElement = inputRef.current || new HTMLInputElement();

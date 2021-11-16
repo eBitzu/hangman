@@ -16,16 +16,25 @@ const App: React.FC = () => {
     setMisses((oldMiss) => [...oldMiss, letter]);
   }, []);
 
+  const reset = () => {
+    setLives(5);
+    setMisses([]);
+    setWord(getWord());
+  };
+
   useEffect(() => {
     if(!lives) {
       alert(`You lost: ${word}`);
-      setLives(5);
-      setMisses([]);
-      setWord(getWord());
+      reset();
     }
   }, [
     lives, word
   ]);
+
+  const handleWin = useCallback(() => {
+    alert('You win');
+    reset();
+  }, []);
 
   return (
     <div className="App">
@@ -37,7 +46,7 @@ const App: React.FC = () => {
         Lives {lives}/5
       </section>
       <section className="rounded-container">
-        <Playground onMiss={handleMisses} hangmanWord={word} />
+        <Playground onMiss={handleMisses} hangmanWord={word} onComplete={handleWin}/>
         <Misses misses={misses}/>
       </section>
     </div>
