@@ -1,0 +1,9 @@
+.word-underscore {
+    border-bottom: 2px solid darkgray;
+    width: 10px;
+    margin-right: 5px;
+}
+.word-container {
+    margin-top: 12px;
+    display: flex;
+}

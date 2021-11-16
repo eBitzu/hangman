@@ -1,0 +1,11 @@
+.confirmation-btn {
+    border-radius: 4px;
+    background-color: red;
+    color: white;
+    text-transform: uppercase;
+}
+
+.letter-input {
+    margin: 20px 10px 0 0;
+    width: 20px;
+}
